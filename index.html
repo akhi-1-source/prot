@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Marketing Portfolio | 3D Glass UI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --primary: #7c3aed;
+  --secondary: #ec4899;
+  --accent: #06b6d4;
+  --gold: #fbbf24;
+  --dark: #0a0a1a;
+  --glass: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.18);
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Poppins', sans-serif;
+  background: #050510;
+  color:#fff;
+  overflow-x:hidden;
+  position:relative;
+  min-height:100vh;
+}
+
+/* Animated background */
+.bg-animation {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index:-1;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+  overflow:hidden;
+}
+.bg-animation::before,
+.bg-animation::after {
+  content:'';
+  position:absolute;
+  width:600px; height:600px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.4;
+  animation: float 20s ease-in-out infinite;
+}
+.bg-animation::before {
+  background: radial-gradient(circle, #7c3aed, transparent);
+  top:-200px; left:-200px;
+}
+.bg-animation::after {
+  background: radial-gradient(circle, #ec4899, transparent);
+  bottom:-200px; right:-200px;
+  animation-delay:-10s;
+}
+.orb {
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:0.3;
+}
+.orb-1 { width:400px; height:400px; background:#06b6d4; top:40%; left:30%; animation: float 15s ease-in-out infinite; }
+.orb-2 { width:300px; height:300px; background:#fbbf24; top:20%; right:20%; animation: float 18s ease-in-out infinite reverse; }
+
+@keyframes float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(100px,-100px) scale(1.1); }
+  66% { transform: translate(-100px,100px) scale(0.9); }
+}
+
+/* Grid pattern overlay */
+.grid-overlay {
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* Navigation */
+nav {
+  position:fixed;
+  top:20px; left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 40px);
+  max-width:1400px;
+  z-index:1000;
+  padding:15px 30px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition: all 0.3s;
+}
+
+.logo {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.5rem;
+  font-weight:700;
+  background: linear-gradient(135deg, #fff, #c4b5fd);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.logo span { color:var(--secondary); -webkit-text-fill-color:var(--secondary); }
+
+.nav-links {
+  display:flex;
+  gap:8px;
+  list-style:none;
+}
+.nav-links a {
+  color:rgba(255,255,255,0.8);
+  text-decoration:none;
+  font-size:0.85rem;
+  font-weight:500;
+  padding:8px 14px;
+  border-radius:12px;
+  transition: all 0.3s;
+}
+.nav-links a:hover {
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+.nav-cta {
+  padding:10px 20px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  font-weight:600;
+  font-size:0.85rem;
+  cursor:pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+}
+.nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 25px rgba(124,58,237,0.6); }
+
+.menu-toggle { display:none; background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer; }
+
+/* Sections */
+section {
+  padding:120px 30px 80px;
+  max-width:1400px;
+  margin:0 auto;
+  position:relative;
+}
+
+.section-header {
+  text-align:center;
+  margin-bottom:60px;
+}
+.section-label {
+  display:inline-block;
+  padding:6px 16px;
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  font-size:0.8rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:15px;
+}
+.section-title {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:clamp(2rem, 5vw, 3.5rem);
+  font-weight:700;
+  margin-bottom:15px;
+  background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #f9a8d4 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  line-height:1.1;
+}
+.section-subtitle {
+  color:rgba(255,255,255,0.6);
+  font-size:1rem;
+  max-width:600px;
+  margin:0 auto;
+}
+
+/* HERO / HOME */
+.hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:140px;
+  padding-bottom:60px;
+}
+.hero-content {
+  display:grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap:60px;
+  align-items:center;
+  width:100%;
+}
+.hero-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 16px;
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  border-radius:30px;
+  font-size:0.85rem;
+  margin-bottom:25px;
+}
+.hero-badge .dot {
+  width:8px; height:8px;
+  background:#10b981;
+  border-radius:50%;
+  box-shadow:0 0 10px #10b981;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+.hero h1 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:clamp(2.5rem, 6vw, 5rem);
+  font-weight:800;
+  line-height:1.05;
+  margin-bottom:25px;
+}
+.hero h1 span {
+  display:inline-block;
+  background: linear-gradient(135deg, #a78bfa, #f472b6, #22d3ee);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p {
+  font-size:1.1rem;
+  color:rgba(255,255,255,0.7);
+  margin-bottom:35px;
+  max-width:550px;
+  line-height:1.7;
+}
+.hero-buttons {
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.btn {
+  padding:14px 28px;
+  border-radius:14px;
+  font-weight:600;
+  font-size:0.95rem;
+  cursor:pointer;
+  transition: all 0.3s;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border:none;
+  font-family:'Poppins', sans-serif;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color:#fff;
+  box-shadow: 0 8px 25px rgba(124,58,237,0.4);
+}
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 35px rgba(124,58,237,0.6); }
+.btn-glass {
+  background:var(--glass);
+  backdrop-filter:blur(15px);
+  border:1px solid var(--glass-border);
+  color:#fff;
+}
+.btn-glass:hover {
+  background:rgba(255,255,255,0.15);
+  transform:translateY(-3px);
+}
+
+/* Hero Stats */
+.hero-stats {
+  display:flex;
+  gap:30px;
+  margin-top:50px;
+}
+.stat {
+  padding:20px 25px;
+  background:var(--glass);
+  backdrop-filter:blur(15px);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  flex:1;
+}
+.stat-num {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:2rem;
+  font-weight:700;
+  background: linear-gradient(135deg, #a78bfa, #f472b6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.stat-label { font-size:0.8rem; color:rgba(255,255,255,0.6); margin-top:4px; }
+
+/* 3D Hero visual */
+.hero-visual {
+  position:relative;
+  height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  perspective:1000px;
+}
+.glass-card-3d {
+  position:absolute;
+  width:240px; height:320px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  animation: rotate3d 15s linear infinite;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.glass-card-3d:nth-child(1) {
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(236,72,153,0.15));
+  animation-delay: 0s;
+  transform: translateX(-80px) rotateY(-15deg);
+}
+.glass-card-3d:nth-child(2) {
+  background: linear-gradient(135deg, rgba(6,182,212,0.3), rgba(124,58,237,0.15));
+  animation-delay: -5s;
+  z-index:2;
+}
+.glass-card-3d:nth-child(3) {
+  background: linear-gradient(135deg, rgba(236,72,153,0.3), rgba(251,191,36,0.15));
+  animation-delay: -10s;
+  transform: translateX(80px) rotateY(15deg);
+}
+@keyframes rotate3d {
+  0%,100% { transform: translateY(0) rotateY(-10deg) rotateX(5deg); }
+  50% { transform: translateY(-20px) rotateY(10deg) rotateX(-5deg); }
+}
+.card-icon {
+  width:50px; height:50px;
+  background:rgba(255,255,255,0.2);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.3rem;
+}
+.card-title { font-weight:600; font-size:1rem; margin-bottom:6px; }
+.card-desc { font-size:0.8rem; color:rgba(255,255,255,0.7); line-height:1.5; }
+
+/* Generic Glass Card */
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 30px;
+  transition: all 0.4s;
+  position:relative;
+  overflow:hidden;
+}
+.glass-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition:0.6s;
+}
+.glass-card:hover::before { left:100%; }
+.glass-card:hover {
+  transform:translateY(-8px);
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 20px 50px rgba(124,58,237,0.2);
+}
+
+/* JOURNEY TIMELINE */
+.journey-container {
+  position:relative;
+  max-width:1000px;
+  margin:0 auto;
+}
+.timeline-line {
+  position:absolute;
+  left:50%;
+  top:0; bottom:0;
+  width:2px;
+  background: linear-gradient(180deg, transparent, var(--primary), var(--secondary), transparent);
+  transform:translateX(-50%);
+}
+.timeline-item {
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap:30px;
+  margin-bottom:50px;
+  align-items:center;
+}
+.timeline-content {
+  padding:25px;
+}
+.timeline-content h3 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.3rem;
+  margin-bottom:8px;
+}
+.timeline-content .time {
+  color:var(--accent);
+  font-size:0.85rem;
+  font-weight:500;
+  margin-bottom:10px;
+  display:block;
+}
+.timeline-content p {
+  color:rgba(255,255,255,0.7);
+  font-size:0.9rem;
+  line-height:1.6;
+  margin-bottom:15px;
+}
+.timeline-dot {
+  width:50px; height:50px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 0 20px rgba(124,58,237,0.6);
+  z-index:2;
+  flex-shrink:0;
+}
+.timeline-item:nth-child(even) .timeline-content:first-child { visibility:hidden; }
+.timeline-item:nth-child(odd) .timeline-content:last-child { visibility:hidden; }
+
+/* PROJECTS */
+.projects-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap:25px;
+}
+.project-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius:24px;
+  overflow:hidden;
+  transition: all 0.4s;
+  position:relative;
+}
+.project-card:hover {
+  transform:translateY(-10px);
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 25px 60px rgba(124,58,237,0.25);
+}
+.project-img {
+  height:220px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:4rem;
+  color:rgba(255,255,255,0.9);
+}
+.project-card:nth-child(2) .project-img { background: linear-gradient(135deg, var(--accent), var(--primary)); }
+.project-card:nth-child(3) .project-img { background: linear-gradient(135deg, var(--secondary), var(--gold)); }
+.project-card:nth-child(4) .project-img { background: linear-gradient(135deg, #10b981, var(--accent)); }
+.project-card:nth-child(5) .project-img { background: linear-gradient(135deg, var(--gold), var(--secondary)); }
+.project-card:nth-child(6) .project-img { background: linear-gradient(135deg, var(--primary), var(--accent)); }
+
+.project-tag {
+  position:absolute;
+  top:15px; left:15px;
+  padding:5px 12px;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  font-size:0.7rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.project-body { padding:25px; }
+.project-body h3 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.25rem;
+  margin-bottom:8px;
+}
+.project-body p {
+  color:rgba(255,255,255,0.65);
+  font-size:0.88rem;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+.project-meta {
+  display:flex;
+  gap:15px;
+  margin-bottom:18px;
+  font-size:0.8rem;
+  color:rgba(255,255,255,0.5);
+}
+.project-meta span i { color:var(--accent); margin-right:5px; }
+.cta-explore {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 20px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  font-weight:600;
+  font-size:0.85rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition: all 0.3s;
+  text-decoration:none;
+}
+.cta-explore:hover { transform:translateX(5px); box-shadow:0 6px 20px rgba(124,58,237,0.5); }
+
+/* Other Tasks */
+.tasks-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:20px;
+}
+.task-card {
+  padding:30px;
+  text-align:center;
+}
+.task-icon {
+  width:70px; height:70px;
+  margin:0 auto 20px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.8rem;
+  box-shadow: 0 10px 25px rgba(124,58,237,0.4);
+}
+.task-card h3 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.15rem;
+  margin-bottom:10px;
+}
+.task-card p {
+  color:rgba(255,255,255,0.65);
+  font-size:0.88rem;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+.cta-view {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 18px;
+  background: var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:12px;
+  color:#fff;
+  font-weight:600;
+  font-size:0.8rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition: all 0.3s;
+  text-decoration:none;
+}
+.cta-view:hover { background:rgba(255,255,255,0.15); transform:translateY(-2px); }
+
+/* Creative & Visuals */
+.creative-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-auto-rows: 280px;
+  gap:20px;
+}
+.creative-item {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius:24px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition: all 0.4s;
+  display:flex;
+  align-items:flex-end;
+}
+.creative-item:nth-child(1) { grid-row:span 2; background: linear-gradient(135deg, #7c3aed, #ec4899); }
+.creative-item:nth-child(2) { background: linear-gradient(135deg, #06b6d4, #7c3aed); }
+.creative-item:nth-child(3) { background: linear-gradient(135deg, #fbbf24, #ec4899); }
+.creative-item:nth-child(4) { background: linear-gradient(135deg, #10b981, #06b6d4); }
+.creative-item:nth-child(5) { grid-row:span 2; background: linear-gradient(135deg, #ec4899, #fbbf24); }
+.creative-item:nth-child(6) { background: linear-gradient(135deg, #7c3aed, #06b6d4); }
+
+.creative-item::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.8));
+  opacity:0.7;
+}
+.creative-item:hover { transform:scale(1.02); box-shadow:0 25px 50px rgba(0,0,0,0.4); }
+.creative-bg-icon {
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-size:5rem;
+  color:rgba(255,255,255,0.3);
+}
+.creative-content {
+  position:relative;
+  z-index:1;
+  padding:25px;
+  width:100%;
+}
+.creative-content h4 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.1rem;
+  margin-bottom:6px;
+}
+.creative-content p {
+  font-size:0.8rem;
+  color:rgba(255,255,255,0.8);
+  margin-bottom:12px;
+}
+
+/* Reels & Videos */
+.reels-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap:20px;
+}
+.reel-card {
+  background: var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  overflow:hidden;
+  transition: all 0.4s;
+}
+.reel-card:hover { transform:translateY(-8px); box-shadow:0 20px 50px rgba(236,72,153,0.3); }
+.reel-thumb {
+  height:380px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  overflow:hidden;
+}
+.reel-card:nth-child(2) .reel-thumb { background: linear-gradient(135deg, #06b6d4, #10b981); }
+.reel-card:nth-child(3) .reel-thumb { background: linear-gradient(135deg, #fbbf24, #ec4899); }
+.reel-card:nth-child(4) .reel-thumb { background: linear-gradient(135deg, #7c3aed, #06b6d4); }
+
+.play-btn {
+  width:70px; height:70px;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(20px);
+  border:2px solid rgba(255,255,255,0.5);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.5rem;
+  transition: all 0.3s;
+  z-index:2;
+}
+.reel-thumb:hover .play-btn {
+  background:rgba(255,255,255,0.35);
+  transform:scale(1.1);
+  box-shadow:0 0 30px rgba(255,255,255,0.5);
+}
+.reel-overlay {
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.7));
+}
+.reel-info {
+  position:absolute;
+  bottom:15px; left:15px; right:15px;
+  z-index:1;
+}
+.reel-info h4 { font-size:1rem; margin-bottom:4px; font-family:'Space Grotesk', sans-serif; }
+.reel-info span { font-size:0.75rem; color:rgba(255,255,255,0.8); }
+.reel-body { padding:18px 20px; display:flex; justify-content:space-between; align-items:center; }
+.reel-stats { display:flex; gap:12px; font-size:0.8rem; color:rgba(255,255,255,0.6); }
+.reel-stats span i { color:var(--secondary); margin-right:4px; }
+
+.cta-play {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 16px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  border:none;
+  border-radius:10px;
+  color:#fff;
+  font-weight:600;
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition: all 0.3s;
+  text-decoration:none;
+}
+.cta-play:hover { transform:scale(1.05); box-shadow:0 4px 15px rgba(236,72,153,0.5); }
+
+/* Skills */
+.skills-wrapper {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:40px;
+}
+.skills-text h3 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.8rem;
+  margin-bottom:20px;
+}
+.skills-text p {
+  color:rgba(255,255,255,0.7);
+  line-height:1.7;
+  margin-bottom:25px;
+}
+.skills-list { display:flex; flex-direction:column; gap:18px; }
+.skill {
+  padding:18px 22px;
+}
+.skill-head {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.skill-name { font-weight:600; font-size:0.9rem; }
+.skill-percent { color:var(--accent); font-weight:700; font-size:0.9rem; }
+.skill-bar {
+  height:6px;
+  background:rgba(255,255,255,0.1);
+  border-radius:10px;
+  overflow:hidden;
+}
+.skill-fill {
+  height:100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius:10px;
+  box-shadow: 0 0 10px rgba(124,58,237,0.6);
+  transition: width 1.5s ease;
+}
+
+/* Tools */
+.tools-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap:18px;
+}
+.tool-card {
+  padding:25px 15px;
+  text-align:center;
+  cursor:pointer;
+}
+.tool-card:hover .tool-icon { transform:scale(1.15) rotate(5deg); }
+.tool-icon {
+  width:60px; height:60px;
+  margin:0 auto 12px;
+  background:rgba(255,255,255,0.1);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.8rem;
+  transition: all 0.4s;
+}
+.tool-card h4 { font-size:0.85rem; font-weight:600; margin-bottom:4px; }
+.tool-card span { font-size:0.7rem; color:rgba(255,255,255,0.5); }
+
+/* Contact */
+.contact-wrap {
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:40px;
+  align-items:start;
+}
+.contact-info-card {
+  padding:40px;
+}
+.contact-info-card h3 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.8rem;
+  margin-bottom:15px;
+}
+.contact-info-card > p {
+  color:rgba(255,255,255,0.7);
+  line-height:1.7;
+  margin-bottom:30px;
+}
+.contact-item {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:15px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  margin-bottom:12px;
+  transition: all 0.3s;
+}
+.contact-item:hover { background:rgba(255,255,255,0.08); transform:translateX(5px); }
+.contact-item i {
+  width:45px; height:45px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.1rem;
+  flex-shrink:0;
+}
+.contact-item span { display:block; font-size:0.75rem; color:rgba(255,255,255,0.5); }
+.contact-item strong { font-size:0.95rem; font-weight:500; }
+
+.social-links {
+  display:flex;
+  gap:12px;
+  margin-top:25px;
+}
+.social-links a {
+  width:42px; height:42px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  transition: all 0.3s;
+}
+.social-links a:hover {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  transform:translateY(-3px);
+}
+
+.contact-form {
+  padding:40px;
+}
+.form-group { margin-bottom:18px; }
+.form-group label {
+  display:block;
+  font-size:0.85rem;
+  margin-bottom:8px;
+  color:rgba(255,255,255,0.8);
+}
+.form-input, .form-textarea {
+  width:100%;
+  padding:14px 16px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  color:#fff;
+  font-size:0.9rem;
+  font-family:'Poppins', sans-serif;
+  transition: all 0.3s;
+}
+.form-input:focus, .form-textarea:focus {
+  outline:none;
+  border-color:var(--primary);
+  background:rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.2);
+}
+.form-textarea { min-height:120px; resize:vertical; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+
+.cta-contact {
+  width:100%;
+  padding:16px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border:none;
+  border-radius:14px;
+  color:#fff;
+  font-weight:700;
+  font-size:0.9rem;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 25px rgba(124,58,237,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.cta-contact:hover { transform:translateY(-2px); box-shadow:0 12px 35px rgba(124,58,237,0.6); }
+
+/* Footer */
+footer {
+  padding:40px 30px;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,0.08);
+  margin-top:60px;
+  color:rgba(255,255,255,0.5);
+  font-size:0.85rem;
+}
+footer strong { color:var(--secondary); }
+
+/* Responsive */
+@media (max-width: 968px) {
+  .nav-links { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:rgba(10,10,26,0.95); backdrop-filter:blur(20px); border-radius:20px; margin-top:10px; padding:20px; }
+  .nav-links.active { display:flex; }
+  .menu-toggle { display:block; }
+  .nav-cta { display:none; }
+  .hero-content { grid-template-columns:1fr; }
+  .hero-visual { height:400px; }
+  .hero-stats { flex-direction:column; }
+  .skills-wrapper { grid-template-columns:1fr; }
+  .contact-wrap { grid-template-columns:1fr; }
+  .timeline-line { left:25px; }
+  .timeline-item { grid-template-columns: 50px 1fr; }
+  .timeline-item .timeline-content:first-child { display:none; }
+  .timeline-item .timeline-content:last-child { visibility:visible !important; }
+  .timeline-dot { width:40px; height:40px; }
+  .form-row { grid-template-columns:1fr; }
+  section { padding: 100px 20px 60px; }
+}
+@media (max-width:500px){
+  .glass-card-3d { width:200px; height:280px; }
+  .hero h1 { font-size:2.2rem; }
+}
+
+/* Scroll animations */
+.fade-up { opacity:0; transform:translateY(40px); transition: all 0.8s; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="bg-animation">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+<div class="grid-overlay"></div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">Portfolio<span>.</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#tasks">Tasks</a></li>
+    <li><a href="#creative">Creative</a></li>
+    <li><a href="#reels">Reels</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">CONTACT US</button>
+  <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')"><i class="fas fa-bars"></i></button>
+</nav>
+
+<!-- HERO / HOME -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-text fade-up">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Available for New Projects
+      </div>
+      <h1>Crafting Digital <span>Experiences</span> That Convert</h1>
+      <p>I'm a passionate Digital Marketing Specialist transforming brands through strategic campaigns, creative visuals & data-driven growth. Let's build something extraordinary together.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">EXPLORE NOW <i class="fas fa-arrow-right"></i></a>
+        <a href="#contact" class="btn btn-glass">CONTACT US <i class="fas fa-envelope"></i></a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5M+</div>
+          <div class="stat-label">Impressions Generated</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="glass-card-3d">
+        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <div class="card-title">Growth Strategy</div>
+          <div class="card-desc">Data-driven marketing to scale your business exponentially</div>
+        </div>
+      </div>
+      <div class="glass-card-3d">
+        <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
+        <div>
+          <div class="card-title">Brand Marketing</div>
+          <div class="card-desc">Building powerful brands that resonate & convert</div>
+        </div>
+      </div>
+      <div class="glass-card-3d">
+        <div class="card-icon"><i class="fas fa-palette"></i></div>
+        <div>
+          <div class="card-title">Creative Design</div>
+          <div class="card-desc">Eye-catching visuals that tell your story</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE JOURNEY -->
+<section id="journey">
+  <div class="section-header fade-up">
+    <span class="section-label">My Path</span>
+    <h2 class="section-title">Course Journey</h2>
+    <p class="section-subtitle">From curiosity to expertise — the milestones that shaped my digital marketing career</p>
+  </div>
+
+  <div class="journey-container">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-item fade-up">
+      <div class="glass-card timeline-content">
+        <span class="time">Month 1 - 2</span>
+        <h3>Digital Marketing Foundations</h3>
+        <p>Started with fundamentals of digital marketing — SEO, SEM, content marketing strategies & consumer psychology.</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
+      <div class="timeline-content"></div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-content"></div>
+      <div class="timeline-dot"><i class="fas fa-search"></i></div>
+      <div class="glass-card timeline-content">
+        <span class="time">Month 3 - 4</span>
+        <h3>SEO & Content Strategy</h3>
+        <p>Deep dive into search engine optimization, keyword research, on-page, off-page & technical SEO techniques.</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="glass-card timeline-content">
+        <span class="time">Month 5 - 6</span>
+        <h3>Social Media & Paid Ads</h3>
+        <p>Mastered Meta Ads, Google Ads, audience targeting, A/B testing & performance marketing campaigns.</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="timeline-dot"><i class="fab fa-facebook-f"></i></div>
+      <div class="timeline-content"></div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-content"></div>
+      <div class="timeline-dot"><i class="fas fa-chart-bar"></i></div>
+      <div class="glass-card timeline-content">
+        <span class="time">Month 7 - 8</span>
+        <h3>Analytics & Data Insights</h3>
+        <p>Google Analytics, GA4, Search Console, conversion tracking & turning data into actionable insights.</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="glass-card timeline-content">
+        <span class="time">Month 9+</span>
+        <h3>Advanced Strategy & Freelancing</h3>
+        <p>Real client projects, growth hacking, funnel building & launching complete marketing strategies for brands.</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="timeline-dot"><i class="fas fa-trophy"></i></div>
+      <div class="timeline-content"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-up">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">Real campaigns, real results — showcasing the work I'm most proud of</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card fade-up">
+      <div class="project-img">
+        <span class="project-tag">SEO Campaign</span>
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="project-body">
+        <h3>E-Commerce SEO Boost</h3>
+        <p>Increased organic traffic by 340% in 6 months through strategic SEO & content optimization.</p>
+        <div class="project-meta">
+          <span><i class="fas fa-calendar"></i>2024</span>
+          <span><i class="fas fa-chart-line"></i>+340% Traffic</span>
+        </div>
+        <a href="#" class="cta-explore">EXPLORE NOW <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-img">
+        <span class="project-tag">Social Media</span>
+        <i class="fab fa-instagram"></i>
+      </div>
+      <div class="project-body">
+        <h3>Instagram Growth Strategy</h3>
+        <p>Scaled brand Instagram from 2K to 80K followers with engaging content & targeted campaigns.</p>
+        <div class="project-meta">
+          <span><i class="fas fa-calendar"></i>2024</span>
+          <span><i class="fas fa-users"></i>+78K Followers</span>
+        </div>
+        <a href="#" class="cta-explore">EXPLORE NOW <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-img">
+        <span class="project-tag">Paid Ads</span>
+        <i class="fab fa-google"></i>
+      </div>
+      <div class="project-body">
+        <h3>Google Ads ROI Campaign</h3>
+        <p>Delivered 8x ROAS on Google Ads with optimized bidding, keywords & landing page strategy.</p>
+        <div class="project-meta">
+          <span><i class="fas fa-calendar"></i>2024</span>
+          <span><i class="fas fa-dollar-sign"></i>8x ROAS</span>
+        </div>
+        <a href="#" class="cta-explore">EXPLORE NOW <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-img">
+        <span class="project-tag">Email Marketing</span>
+        <i class="fas fa-envelope-open-text"></i>
+      </div>
+      <div class="project-body">
+        <h3>Email Funnel Automation</h3>
+        <p>Built automated email sequences that achieved 42% open rate & 12% conversion.</p>
+        <div class="project-meta">
+          <span><i class="fas fa-calendar"></i>2023</span>
+          <span><i class="fas fa-percent"></i>42% Open Rate</span>
+        </div>
+        <a href="#" class="cta-explore">EXPLORE NOW <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-img">
+        <span class="project-tag">Brand Launch</span>
+        <i class="fas fa-rocket"></i>
+      </div>
+      <div class="project-body">
+        <h3>D2C Brand Launch</h3>
+        <p>End-to-end launch strategy for fashion D2C brand reaching 500K+ in first quarter.</p>
+        <div class="project-meta">
+          <span><i class="fas fa-calendar"></i>2023</span>
+          <span><i class="fas fa-eye"></i>500K+ Reach</span>
+        </div>
+        <a href="#" class="cta-explore">EXPLORE NOW <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-img">
+        <span class="project-tag">Content Strategy</span>
+        <i class="fas fa-pen-fancy"></i>
+      </div>
+      <div class="project-body">
+        <h3>Content Marketing Plan</h3>
+        <p>Developed comprehensive content calendar increasing engagement by 220% across all platforms.</p>
+        <div class="project-meta">
+          <span><i class="fas fa-calendar"></i>2024</span>
+          <span><i class="fas fa-heart"></i>+220% Engage</span>
+        </div>
+        <a href="#" class="cta-explore">EXPLORE NOW <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER TASKS -->
+<section id="tasks">
+  <div class="section-header fade-up">
+    <span class="section-label">Additional Work</span>
+    <h2 class="section-title">Other Tasks</h2>
+    <p class="section-subtitle">Beyond major projects — the everyday tasks & assignments I've delivered</p>
+  </div>
+
+  <div class="tasks-grid">
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+      <h3>Keyword Research</h3>
+      <p>In-depth keyword analysis for 20+ brands across niches.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-file-lines"></i></div>
+      <h3>Content Writing</h3>
+      <p>100+ SEO-optimized blog posts, landing pages & ad copies.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-comments"></i></div>
+      <h3>Community Management</h3>
+      <p>Managed social communities with 100K+ engaged members.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-chart-pie"></i></div>
+      <h3>Competitor Analysis</h3>
+      <p>Detailed competitive research reports with strategic insights.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-calendar-check"></i></div>
+      <h3>Content Calendars</h3>
+      <p>Monthly content planning for multiple brands across platforms.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-users-gear"></i></div>
+      <h3>Influencer Outreach</h3>
+      <p>Collaborated with 50+ influencers driving brand awareness.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-gear"></i></div>
+      <h3>Website Audits</h3>
+      <p>Full technical SEO audits identifying key growth areas.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="glass-card task-card fade-up">
+      <div class="task-icon"><i class="fas fa-bullseye"></i></div>
+      <h3>Campaign Reports</h3>
+      <p>Detailed performance reports with actionable recommendations.</p>
+      <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- CREATIVE & VISUALS -->
+<section id="creative">
+  <div class="section-header fade-up">
+    <span class="section-label">Design Work</span>
+    <h2 class="section-title">Creative & Visuals</h2>
+    <p class="section-subtitle">Brand visuals, social posts & designs that stop the scroll</p>
+  </div>
+
+  <div class="creative-grid">
+    <div class="creative-item fade-up">
+      <i class="fas fa-palette creative-bg-icon"></i>
+      <div class="creative-content">
+        <h4>Brand Identity Design</h4>
+        <p>Complete brand kits with logos, colors & guidelines</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="creative-item fade-up">
+      <i class="fab fa-instagram creative-bg-icon"></i>
+      <div class="creative-content">
+        <h4>Social Media Posts</h4>
+        <p>Eye-catching feed designs</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="creative-item fade-up">
+      <i class="fas fa-image creative-bg-icon"></i>
+      <div class="creative-content">
+        <h4>Ad Creatives</h4>
+        <p>High-converting designs</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="creative-item fade-up">
+      <i class="fas fa-mobile-screen creative-bg-icon"></i>
+      <div class="creative-content">
+        <h4>Mobile Banners</h4>
+        <p>Optimized for all platforms</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="creative-item fade-up">
+      <i class="fas fa-photo-film creative-bg-icon"></i>
+      <div class="creative-content">
+        <h4>Visual Storytelling</h4>
+        <p>Carousel posts, infographics & creative visual narratives</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="creative-item fade-up">
+      <i class="fas fa-paint-brush creative-bg-icon"></i>
+      <div class="creative-content">
+        <h4>Poster Designs</h4>
+        <p>Campaign posters & flyers</p>
+        <a href="#" class="cta-view">VIEW MORE <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REELS & VIDEOS -->
+<section id="reels">
+  <div class="section-header fade-up">
+    <span class="section-label">Video Content</span>
+    <h2 class="section-title">Reels & Videos</h2>
+    <p class="section-subtitle">Short-form video content that drives millions of views & engagement</p>
+  </div>
+
+  <div class="reels-grid">
+    <div class="reel-card fade-up">
+      <div class="reel-thumb">
+        <div class="reel-overlay"></div>
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+        <div class="reel-info">
+          <h4>Product Launch Reel</h4>
+          <span>1.2M Views</span>
+        </div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-stats">
+          <span><i class="fas fa-heart"></i>45K</span>
+          <span><i class="fas fa-comment"></i>2.1K</span>
+        </div>
+        <a href="#" class="cta-play">PLAY NOW <i class="fas fa-play"></i></a>
+      </div>
+    </div>
+
+    <div class="reel-card fade-up">
+      <div class="reel-thumb">
+        <div class="reel-overlay"></div>
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+        <div class="reel-info">
+          <h4>Brand Storytelling</h4>
+          <span>856K Views</span>
+        </div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-stats">
+          <span><i class="fas fa-heart"></i>32K</span>
+          <span><i class="fas fa-comment"></i>1.5K</span>
+        </div>
+        <a href="#" class="cta-play">PLAY NOW <i class="fas fa-play"></i></a>
+      </div>
+    </div>
+
+    <div class="reel-card fade-up">
+      <div class="reel-thumb">
+        <div class="reel-overlay"></div>
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+        <div class="reel-info">
+          <h4>Tutorial Series</h4>
+          <span>520K Views</span>
+        </div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-stats">
+          <span><i class="fas fa-heart"></i>28K</span>
+          <span><i class="fas fa-comment"></i>980</span>
+        </div>
+        <a href="#" class="cta-play">PLAY NOW <i class="fas fa-play"></i></a>
+      </div>
+    </div>
+
+    <div class="reel-card fade-up">
+      <div class="reel-thumb">
+        <div class="reel-overlay"></div>
+        <div class="play-btn"><i class="fas fa-play"></i></div>
+        <div class="reel-info">
+          <h4>Testimonial Reel</h4>
+          <span>340K Views</span>
+        </div>
+      </div>
+      <div class="reel-body">
+        <div class="reel-stats">
+          <span><i class="fas fa-heart"></i>18K</span>
+          <span><i class="fas fa-comment"></i>650</span>
+        </div>
+        <a href="#" class="cta-play">PLAY NOW <i class="fas fa-play"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <span class="section-label">Expertise</span>
+    <h2 class="section-title">My Skills</h2>
+    <p class="section-subtitle">The core competencies that drive exceptional results</p>
+  </div>
+
+  <div class="skills-wrapper">
+    <div class="glass-card skills-text fade-up">
+      <h3>Crafting Growth Through Strategy</h3>
+      <p>With years of hands-on experience across digital marketing disciplines, I bring a holistic approach to every project. From understanding consumer behavior to executing data-driven campaigns — every skill is honed with one goal: <strong>delivering measurable results</strong>.</p>
+      <p>I combine creativity with analytics, strategy with execution, and brand vision with performance metrics.</p>
+      <a href="#contact" class="btn btn-primary">CONTACT US <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="skills-list">
+      <div class="glass-card skill fade-up">
+        <div class="skill-head">
+          <span class="skill-name"><i class="fas fa-search"></i> SEO & SEM</span>
+          <span class="skill-percent">95%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+      </div>
+      <div class="glass-card skill fade-up">
+        <div class="skill-head">
+          <span class="skill-name"><i class="fab fa-facebook"></i> Social Media Marketing</span>
+          <span class="skill-percent">92%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div>
+      </div>
+      <div class="glass-card skill fade-up">
+        <div class="skill-head">
+          <span class="skill-name"><i class="fas fa-ad"></i> Paid Advertising</span>
+          <span class="skill-percent">88%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
+      </div>
+      <div class="glass-card skill fade-up">
+        <div class="skill-head">
+          <span class="skill-name"><i class="fas fa-pen"></i> Content Strategy</span>
+          <span class="skill-percent">90%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+      </div>
+      <div class="glass-card skill fade-up">
+        <div class="skill-head">
+          <span class="skill-name"><i class="fas fa-chart-line"></i> Analytics & Reporting</span>
+          <span class="skill-percent">87%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="87%"></div></div>
+      </div>
+      <div class="glass-card skill fade-up">
+        <div class="skill-head">
+          <span class="skill-name"><i class="fas fa-envelope"></i> Email Marketing</span>
+          <span class="skill-percent">85%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-header fade-up">
+    <span class="section-label">Tech Stack</span>
+    <h2 class="section-title">Tools I Use</h2>
+    <p class="section-subtitle">Industry-leading platforms that power my workflow</p>
+  </div>
+
+  <div class="tools-grid">
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-google" style="color:#4285F4"></i></div>
+      <h4>Google Ads</h4>
+      <span>PPC Campaigns</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-meta" style="color:#1877F2"></i></div>
+      <h4>Meta Ads</h4>
+      <span>FB & IG Ads</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fas fa-chart-line" style="color:#F9AB00"></i></div>
+      <h4>GA4</h4>
+      <span>Analytics</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fas fa-magnifying-glass" style="color:#FF6B35"></i></div>
+      <h4>SEMrush</h4>
+      <span>SEO Tool</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fas fa-link" style="color:#2ECC71"></i></div>
+      <h4>Ahrefs</h4>
+      <span>Backlinks</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-hubspot" style="color:#FF7A59"></i></div>
+      <h4>HubSpot</h4>
+      <span>CRM & Auto</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-canva" style="color:#00C4CC"></i></div>
+      <h4>Canva</h4>
+      <span>Design</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-figma" style="color:#F24E1E"></i></div>
+      <h4>Figma</h4>
+      <span>UI/UX</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-mailchimp" style="color:#FFE01B"></i></div>
+      <h4>Mailchimp</h4>
+      <span>Email</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-wordpress" style="color:#21759B"></i></div>
+      <h4>WordPress</h4>
+      <span>CMS</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fab fa-shopify" style="color:#96BF48"></i></div>
+      <h4>Shopify</h4>
+      <span>E-commerce</span>
+    </div>
+    <div class="glass-card tool-card fade-up">
+      <div class="tool-icon"><i class="fas fa-video" style="color:#FF0000"></i></div>
+      <h4>CapCut</h4>
+      <span>Video Edit</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">Let's Work Together</h2>
+    <p class="section-subtitle">Ready to grow your brand? Let's start a conversation & create something amazing</p>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="glass-card contact-info-card fade-up">
+      <h3>Let's Connect</h3>
+      <p>Have a project in mind or just want to say hi? I'm always open to discussing new opportunities & collaborations.</p>
+
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <div>
+          <span>Email</span>
+          <strong>hello@yourportfolio.com</strong>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <div>
+          <span>Phone</span>
+          <strong>+91 98765 43210</strong>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-location-dot"></i>
+        <div>
+          <span>Location</span>
+          <strong>India</strong>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-behance"></i></a>
+      </div>
+    </div>
+
+    <form class="glass-card contact-form fade-up" onsubmit="event.preventDefault(); alert('Thank you! Message sent successfully.');">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" class="form-input" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" class="form-input" placeholder="john@example.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" class="form-input" placeholder="Project Inquiry" required>
+      </div>
+      <div class="form-group">
+        <label>Your Message</label>
+        <textarea class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="cta-contact">CONTACT US <i class="fas fa-paper-plane"></i></button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2024 <strong>Your Name</strong>. Crafted with passion. All rights reserved.</p>
+</footer>
+
+<script>
+// Smooth scroll for nav
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    document.getElementById('navLinks').classList.remove('active');
+  });
+});
+
+// Intersection Observer for fade-up
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Animate skill bars
+      if (entry.target.querySelector('.skill-fill')) {
+        const fill = entry.target.querySelector('.skill-fill');
+        fill.style.width = fill.dataset.width;
+      }
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(10,10,26,0.8)';
+  } else {
+    nav.style.background = 'rgba(255,255,255,0.05)';
+  }
+});
+</script>
+
+</body>
+</html>
