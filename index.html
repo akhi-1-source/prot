@@ -24,6 +24,30 @@
   --line: rgba(22, 22, 22, 0.08);
   --text: #101010;
   --muted: #585858;
+}
+  /* Custom Row Style for Reels */
+.reels-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 5px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.reel-item {
+  flex: 0 0 320px;
+  min-width: 320px;
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+  .reels-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
   --shadow-dark: rgba(114, 114, 114, 0.2);
   --shadow-light: rgba(255, 255, 255, 0.95);
   --shadow-ambient: rgba(130, 130, 130, 0.16);
@@ -35,7 +59,6 @@
   --item-w: 280px;
   --item-h: 360px;
   --item-gap: 20px;
-}
 
 html {
   scroll-behavior: smooth;
@@ -1807,104 +1830,82 @@ footer {
       </div>
       </div>
 
-      <div class="reels-grid">
-        <article class="reel-card tilt-card fade-up">
-          <div class="reel-media">
-            <span class="reel-tag">Website Build</span>
-            <div class="reel-icon"><i class="fas fa-cart-shopping"></i></div>
-          </div>
-          <div class="reel-body">
-            <span class="reel-period">Portfolio Link</span>
-            <h3>Shopify E-commerce Website</h3>
-            <p>A practical e-commerce website build demonstrating design structure, product flow thinking, and visual presentation.</p>
-            <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-    <iframe 
-        src="https://drive.google.com/file/d/1aNZ5ElDFaXx2Y3HzfUpOcLrvN-bkEV_L/preview" 
-        width="100%" 
-        height="450"
-        allow="autoplay" 
-        style="border: none;">
-    </iframe>
-</div>
-        </article>
-
-        <article class="reel-card tilt-card fade-up">
-          <div class="reel-media">
-            <span class="reel-tag">Creative Reel</span>
-            <div class="reel-icon"><i class="fas fa-clapperboard"></i></div>
-          </div>
-          <div class="reel-body">
-            <span class="reel-period">Portfolio Link</span>
-            <h3>Sugar Cosmetic Reel</h3>
-            <p>A creative social media reel focused on visual storytelling, product presentation, and scroll-stopping content design.</p>
-            <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
-  <iframe src="https://drive.google.com/file/d/1MY63-CGw3hTqUBeJgCuOUhkf-Exbc-8X/preview" width="100%" height="450" allow="autoplay" style="border: none;"></iframe>
-  </div>
-        </article>
-      <article class="reel-card tilt-card fade-up">
-          <div class="reel-media">
-            <span class="reel-tag">Video Reel</span>
-            <div class="reel-icon"><i class="fas fa-video"></i></div>
-          </div>
-          <div class="reel-body">
-            <span class="reel-period">Social Media</span>
-            <h3>Creative Reel 1</h3>
-            <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <iframe src="" width="100%" height="450" style="border: none; background: #000;"></iframe>
-            </div>
-          </div>
-        </article>
-
-        <article class="reel-card tilt-card fade-up">
-          <div class="reel-media">
-            <span class="reel-tag">Video Reel</span>
-            <div class="reel-icon"><i class="fas fa-video"></i></div>
-          </div>
-          <div class="reel-body">
-            <span class="reel-period">Social Media</span>
-            <h3>Creative Reel 2</h3>
-            <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <iframe src="" width="100%" height="450" style="border: none; background: #000;"></iframe>
-            </div>
-          </div>
-        </article>
-
-        <article class="reel-card tilt-card fade-up">
-          <div class="reel-media">
-            <span class="reel-tag">Video Reel</span>
-            <div class="reel-icon"><i class="fas fa-video"></i></div>
-          </div>
-          <div class="reel-body">
-            <span class="reel-period">Social Media</span>
-            <h3>Creative Reel 3</h3>
-            <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <iframe src="" width="100%" height="450" style="border: none; background: #000;"></iframe>
-            </div>
-          </div>
-        </article>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="section-shell">
-      <div class="section-tilt fade-up">
-      <div class="section-header">
-        <span class="section-label">Skills</span>
-        <h2 class="section-title">Core Skills I Bring</h2>
-        <p class="section-subtitle">A mix of communication, research, platform knowledge, and campaign fundamentals shaped through hands-on training.</p>
+   <div class="reels-row">
+  <div class="reel-item">
+    <article class="reel-card tilt-card fade-up">
+      <div class="reel-media">
+        <span class="reel-tag">Website Build</span>
+        <div class="reel-icon"><i class="fas fa-cart-shopping"></i></div>
       </div>
-      </div>
-
-      <div class="skills-grid">
-        <div class="glass-card tilt-card fade-up">
-          <h3>How I Approach Marketing</h3>
-          <p>
-            I enjoy connecting research, audience understanding, content thinking, and platform execution into practical campaign plans. As a fresher, I bring strong curiosity, disciplined learning, and the confidence to turn brief-based assignments into clear digital strategies.
-          </p>
-          <p style="margin-top:14px;">
-            My strongest interest is in building creative and performance-focused campaigns that are simple to understand, aligned to business goals, and measurable over time.
-          </p>
+      <div class="reel-body">
+        <span class="reel-period">Portfolio Link</span>
+        <h3>Shopify E-commerce Website</h3>
+        <p>A practical e-commerce website build demonstrating design structure and flow.</p>
+        <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <iframe src="https://drive.google.com/file/d/1aNZ5ElDFaXx2Y3HzfUpOcLrvN-bkEV_L/preview" width="100%" height="450" allow="autoplay" style="border: none;"></iframe>
         </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="reel-item">
+    <article class="reel-card tilt-card fade-up">
+      <div class="reel-media">
+        <span class="reel-tag">Creative Reel</span>
+        <div class="reel-icon"><i class="fas fa-clapperboard"></i></div>
+      </div>
+      <div class="reel-body">
+        <span class="reel-period">Portfolio Link</span>
+        <h3>Sugar Cosmetic Reel</h3>
+        <p>A creative social media reel focused on visual storytelling and product design.</p>
+        <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <iframe src="https://drive.google.com/file/d/1MY63-CGw3hTqUBeJgCuOUhkf-Exbc-8X/preview" width="100%" height="450" allow="autoplay" style="border: none;"></iframe>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="reel-item">
+    <article class="reel-card tilt-card fade-up">
+      <div class="reel-media">
+        <span class="reel-tag">Video Reel</span>
+        <div class="reel-icon"><i class="fas fa-video"></i></div>
+      </div>
+      <div class="reel-body">
+        <span class="reel-period">Social Media</span>
+        <h3>Creative Reel 1</h3>
+        <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <iframe src="" width="100%" height="450" style="border: none; background: #000;"></iframe>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="reel-item">
+    <article class="reel-card tilt-card fade-up">
+      <div class="reel-media">
+        <span class="reel-tag">Video Reel</span>
+        <div class="reel-icon"><i class="fas fa-video"></i></div>
+      </div>
+      <div class="reel-body">
+        <span class="reel-period">Social Media</span>
+        <h3>Creative Reel 2</h3>
+        <div class="video-wrapper" style="margin-top: 15px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <iframe src="" width="100%" height="450" style="border: none; background: #000;"></iframe>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+</div>
+</section>
+
+<section id="skills">
+  <div class="section-shell">
+    <div class="section-tilt fade-up">
+      <h2 class="section-title">Core Skills I Bring</h2>
+      <p class="section-subtitle">A mix of communication, research, platform knowledge, and campaign fundamentals shaped through hands-on training.</p>
+    </div>
 
         <div class="skill-list">
           <div class="skill-card tilt-card fade-up"><div class="skill-icon"><i class="fas fa-comments"></i></div><h3>English Proficiency (Spoken)</h3><p>Comfortable communicating ideas clearly in live discussion and presentations.</p></div>
