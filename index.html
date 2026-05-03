@@ -661,20 +661,22 @@ section {
   background: rgba(16,16,16,0.72);
 }
 
-.projects-grid,
-.reels-grid,
-.tasks-grid,
-.tools-grid {
+.projects-grid, 
+.reels-grid {
   display: grid;
   gap: 24px;
 }
 
-.projects-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.reels-grid {
+  grid-template-columns: repeat(4, 1fr); /* FORCES 4 COLUMNS FOR REELS */
 }
 
-.project-card,
-.reel-card,
+.projects-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* KEEPS PROJECTS AT 2 COLUMNS */
+}
+
+.project-card, 
+.reel-card, 
 .task-card,
 .tool-card,
 .skill-card,
@@ -687,7 +689,7 @@ section {
 .project-media, .reel-media {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* This keeps the video shape perfect */
+    aspect-ratio: 9 / 16;
     overflow: hidden;
     display: block;
     background: var(--panel-bg);
@@ -1932,12 +1934,12 @@ footer {
   </div>
 </article>
 
-<article class="reel-card reel-embed-card tilt-card fade-up">
-  <div class="reel-media" style="position: relative; width: 100%; padding-top: 177.78%; background: #000; overflow: hidden; border-radius: 12px;">
+<article class="reel-card reel-embed-card tilt-card fade-up" style="width: 100%; aspect-ratio: 9/16; overflow: hidden;">
+  <div class="reel-media" style="position: relative; width: 100%; height: 100%;">
     <iframe 
         src="https://www.youtube.com/embed/4D8D5C3vo_8" 
         title="AI influencer promoting a makeup brand" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; object-fit: cover;"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         referrerpolicy="strict-origin-when-cross-origin" 
         allowfullscreen>
