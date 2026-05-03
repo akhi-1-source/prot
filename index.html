@@ -686,9 +686,10 @@ section {
 
 .project-media, .reel-media {
     position: relative;
-    height: 250px; /* Forces all cards to be the same height */
-    overflow: hidden; /* Clips the image to the rounded corners */
-    display: block;   /* Changed from flex on line 692 */
+    width: 100%;
+    aspect-ratio: 16 / 9; /* This keeps the video shape perfect */
+    overflow: hidden;
+    display: block;
     background: var(--panel-bg);
 }
   .project-img {
@@ -1932,19 +1933,19 @@ footer {
 </article>
 
 <article class="reel-card reel-embed-card tilt-card fade-up">
-  <div class="reel-embed-shell">
-    <iframe class="reel-embed" 
-            src="https://www.youtube.com/embed/4D8D5C3vo_8" 
-            title="AI influencer promoting a makeup brand" 
-            style="width: 100%; height: 100%; border: none;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
+  <div class="reel-media" style="position: relative; width: 100%; aspect-ratio: 9 / 16; background: #000; overflow: hidden;">
+    <iframe 
+        src="https://www.youtube.com/embed/4D8D5C3vo_8" 
+        title="AI influencer promoting a makeup brand" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
     </iframe>
   </div>
 </article>
 
-          <article class="reel-card reel-embed-card tilt-card fade-up">
+<article class="reel-card reel-embed-card tilt-card fade-up">
             <div class="reel-embed-shell">
               <iframe class="reel-embed" src="about:blank" title="Reel 2" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
               <div class="reel-placeholder">
