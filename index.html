@@ -661,11 +661,12 @@ section {
   background: rgba(16,16,16,0.72);
 }
 
-/* Restored original layout separation */
+/* --- 1. Grid Structures --- */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    margin-bottom: 40px;
 }
 
 .reels-grid {
@@ -680,31 +681,38 @@ section {
     border-radius: var(--radius-lg);
     overflow: hidden;
 }
-/* This keeps Shopify Projects WIDE */
+
+/* --- 2. Media Shapes --- */
+
+/* Shopify/Spotify (Wide) */
 .project-media {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     display: block;
+    background: #000;
 }
 
-/* This keeps Reels TALL and SMALL */
+/* Reels (Tall) */
 .reel-media {
     position: relative;
     width: 100%;
     aspect-ratio: 9 / 16;
     overflow: hidden;
     display: block;
+    background: #000;
 }
 
-.project-media::after,
-.reel-media::after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.8);
+/* Video Behavior */
+.project-media iframe,
+.reel-media iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .project-icon,
@@ -1909,16 +1917,13 @@ footer {
 
       <div class="reel-showcase">
         <div class="reels-grid">
-          <article class="reel-card tilt-card fade-up">
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe 
-        src="https://www.youtube.com/embed/AUc5gdxn_n0?si=IxHJ7eluPy-2n113&amp;start=1" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
-        title="YouTube video player" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen>
-    </iframe>
+          <article class="project-card tilt-card fade-up">
+<div class="project-media">
+   <iframe 
+  src="https://www.youtube.com/embed/AUc5gdxn_n0?si=IxHJ7eluPy-2n113&amp;start=1" 
+  title="YouTube video player" 
+  allowfullscreen>
+</iframe>
 </div>
 
   <div class="reel-body">
