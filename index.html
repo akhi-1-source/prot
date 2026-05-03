@@ -661,43 +661,40 @@ section {
   background: rgba(16,16,16,0.72);
 }
 
-.projects-grid, 
-.reels-grid {
-  display: grid;
-  gap: 24px;
-}
-
-.reels-grid {
-  grid-template-columns: repeat(4, 1fr); /* FORCES 4 COLUMNS FOR REELS */
-}
-
+/* Restored original layout separation */
 .projects-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* KEEPS PROJECTS AT 2 COLUMNS */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
-.project-card, 
-.reel-card, 
-.task-card,
-.tool-card,
-.skill-card,
-.contact-form,
-.contact-card {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
+.reels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
 }
 
-.project-media, .reel-media {
+.project-card, .reel-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+/* This keeps Shopify Projects WIDE */
+.project-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: block;
+}
+
+/* This keeps Reels TALL and SMALL */
+.reel-media {
     position: relative;
     width: 100%;
     aspect-ratio: 9 / 16;
     overflow: hidden;
-    display: block;
-    background: var(--panel-bg);
-}
-  .project-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
 }
 
