@@ -1221,16 +1221,16 @@ footer {
 }
 
 @media (hover: none), (pointer: coarse) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none;
-  }
-
   .touch-hint {
     display: block;
   }
 
   .scroll-hint {
+    display: none;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
     display: none;
   }
 }
@@ -1298,7 +1298,7 @@ footer {
             </div>
             <div class="stat-card glass-card">
               <div class="stat-number">5</div>
-              <div class="stat-label">Video case studies, reels, and web builds linked in the portfolio</div>
+              <div class="stat-label">Video case studies and web builds linked in the portfolio</div>
             </div>
             <div class="stat-card glass-card">
               <div class="stat-number">18+</div>
@@ -1976,4 +1976,143 @@ function positionItems(index) {
     const absAngle = Math.abs(((angle % 360) + 360) % 360);
     const normAngle = absAngle > 180 ? 360 - absAngle : absAngle;
     const scale = 1 - (normAngle / 180) * 0.38;
-    const opacity = 0.28 + (1 - normAngle / 180) *
+    const opacity = 0.28 + (1 - normAngle / 180) * 0.72;
+    const isActive = i === index;
+
+    item.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${-angle}deg) scale(${scale})`;
+    item.style.opacity = opacity;
+    item.style.zIndex = Math.round((1 - normAngle / 180) * 100);
+    item.classList.toggle('active', isActive);
+  });
+
+  allDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+}
+
+function goTo(index, skipAnim = false) {
+  if (isAnimating && !skipAnim) return;
+  isAnimating = true;
+  currentIndex = ((index % itemCount) + itemCount) % itemCount;
+  positionItems(currentIndex);
+  window.setTimeout(() => {
+    isAnimating = false;
+  }, prefersReducedMotion ? 0 : 950);
+}
+
+function startAutoRotate() {
+  if (prefersReducedMotion) return;
+  clearInterval(autoRotate);
+  autoRotate = window.setInterval(() => goTo(currentIndex + 1), 3200);
+}
+
+function resetAutoRotate() {
+  startAutoRotate();
+}
+
+function pauseAuto() {
+  clearInterval(autoRotate);
+}
+
+function openLightbox(index) {
+  lightboxIndex = index;
+  lightboxImg.src = images[index].src;
+  lightboxImg.alt = images[index].label;
+  lightboxCaption.textContent = images[index].label;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  pauseAuto();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  window.setTimeout(() => {
+    lightboxImg.src = '';
+  }, 400);
+  startAutoRotate();
+}
+
+function lightboxNav(direction) {
+  lightboxIndex = (lightboxIndex + direction + itemCount) % itemCount;
+  lightboxImg.style.opacity = '0';
+  window.setTimeout(() => {
+    lightboxImg.src = images[lightboxIndex].src;
+    lightboxImg.alt = images[lightboxIndex].label;
+    lightboxCaption.textContent = images[lightboxIndex].label;
+    lightboxImg.style.transition = 'opacity 0.3s ease';
+    lightboxImg.style.opacity = '1';
+  }, 200);
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  resetAutoRotate();
+  goTo(currentIndex - 1);
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  resetAutoRotate();
+  goTo(currentIndex + 1);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') {
+    resetAutoRotate();
+    goTo(currentIndex - 1);
+  }
+
+  if (event.key === 'ArrowRight') {
+    resetAutoRotate();
+    goTo(currentIndex + 1);
+  }
+
+  if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+    closeLightbox();
+  }
+});
+
+stage.addEventListener('wheel', (event) => {
+  event.preventDefault();
+  wheelAccum += event.deltaY;
+  if (Math.abs(wheelAccum) > 80) {
+    resetAutoRotate();
+    goTo(currentIndex + (wheelAccum > 0 ? 1 : -1));
+    wheelAccum = 0;
+  }
+}, { passive: false });
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+stage.addEventListener('touchstart', (event) => {
+  touchStartX = event.touches[0].clientX;
+  touchStartY = event.touches[0].clientY;
+}, { passive: true });
+
+stage.addEventListener('touchend', (event) => {
+  const dx = event.changedTouches[0].clientX - touchStartX;
+  const dy = event.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    resetAutoRotate();
+    goTo(currentIndex + (dx < 0 ? 1 : -1));
+  }
+}, { passive: true });
+
+stage.addEventListener('mouseenter', pauseAuto);
+stage.addEventListener('mouseleave', startAutoRotate);
+
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxPrev').addEventListener('click', () => lightboxNav(-1));
+document.getElementById('lightboxNext').addEventListener('click', () => lightboxNav(1));
+
+lightbox.addEventListener('click', (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+window.addEventListener('resize', () => positionItems(currentIndex), { passive: true });
+
+positionItems(currentIndex);
+startAutoRotate();
+</script>
+</body>
+</html>
