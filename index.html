@@ -994,6 +994,39 @@ textarea:focus {
   right: 16px;
 }
 
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #101010;
+}
+
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(16,16,16,0.28);
+  border-radius: 50%;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.cursor-ring.cursor-hover {
+  width: 54px;
+  height: 54px;
+  border-color: rgba(16,16,16,0.12);
+  background: rgba(16,16,16,0.04);
+}
+
 footer {
   max-width: 1320px;
   margin: 0 auto;
@@ -1187,7 +1220,12 @@ footer {
   }
 }
 
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
   .touch-hint {
     display: block;
   }
@@ -1214,6 +1252,9 @@ footer {
 </head>
 
 <body>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
 <nav class="fade-up">
   <div class="logo">Akhilesh<span>. Portfolio</span></div>
   <ul class="nav-links" id="navLinks">
@@ -1252,12 +1293,12 @@ footer {
           </div>
           <div class="hero-stats">
             <div class="stat-card glass-card">
-              <div class="stat-number">4</div>
+              <div class="stat-number">5</div>
               <div class="stat-label">Portfolio projects built from practical digital marketing training</div>
             </div>
             <div class="stat-card glass-card">
-              <div class="stat-number">2</div>
-              <div class="stat-label">Video case studies and web builds linked in the portfolio</div>
+              <div class="stat-number">5</div>
+              <div class="stat-label">Video case studies, reels, and web builds linked in the portfolio</div>
             </div>
             <div class="stat-card glass-card">
               <div class="stat-number">18+</div>
@@ -1403,7 +1444,7 @@ footer {
       <div class="section-tilt fade-up">
         <div class="section-header">
           <span class="section-label">Projects</span>
-          <h2 class="section-title">Four Focused Portfolio Builds</h2>
+          <h2 class="section-title">Five Focused Portfolio Builds</h2>
           <p class="section-subtitle">Each project reflects strategy thinking, research depth, campaign planning, and execution design learned during training.</p>
         </div>
       </div>
@@ -1482,6 +1523,26 @@ footer {
               <li>Delivered a strategy pitch video unifying SEO, paid ads, CRO, and a 3-step email nurture flow.</li>
             </ul>
             <a class="btn" href="https://docs.google.com/presentation/d/1awhGRjD_Gqb_R5sg04AFy_mnYqYVpPbGJuwgGzgDVRY/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Open Project <i class="fas fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </article>
+
+        <article class="project-card tilt-card fade-up">
+          <div class="project-media">
+            <span class="project-tag">Capstone Project</span>
+            <div class="project-icon"><i class="fas fa-layer-group"></i></div>
+            <img src="project 5.png" alt="Project 5 Display" class="project-img">
+          </div>
+          <div class="project-body">
+            <span class="project-period">Capstone Project</span>
+            <h3>Capstone Project</h3>
+            <p>Developed a comprehensive digital marketing strategy to drive brand growth and maximize ROI.</p>
+            <ul class="project-points">
+              <li>Conducted detailed brand analysis, competitor research, and target audience segmentation.</li>
+              <li>Evaluated and optimized 360° marketing channels including social media, SEO, and paid advertising.</li>
+              <li>Created a hero campaign concept with integrated content, video, and ad creatives.</li>
+              <li>Implemented multi-platform campaigns to improve brand visibility, engagement, and performance.</li>
+            </ul>
+            <a class="btn" href="https://docs.google.com/presentation/d/1zN3eGv_5jpvjwV5pIBU-1oVA7GAdvw6pWxKq-IC6Ga8/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Open Project <i class="fas fa-arrow-up-right-from-square"></i></a>
           </div>
         </article>
       </div>
@@ -1581,40 +1642,42 @@ footer {
 
         <article class="reel-card reel-embed-card tilt-card fade-up">
           <div class="reel-embed-shell">
-            <iframe class="reel-embed" src="about:blank" title="Reel 2" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
-            <div class="reel-placeholder">
-              <div class="reel-placeholder-inner">
-                <div class="reel-icon"><i class="fas fa-play"></i></div>
-                <strong>Reel 2</strong>
-                <p>Use this second portrait container for another embedded reel, short-form ad, or campaign video.</p>
-              </div>
-            </div>
+            <iframe
+              class="reel-embed"
+              src="https://www.youtube.com/embed/ljtnb_hAeHc"
+              title="Coconut Avocado Shampoo For Damaged Hair #hairrepair #natural"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
           </div>
         </article>
 
         <article class="reel-card reel-embed-card tilt-card fade-up">
           <div class="reel-embed-shell">
-            <iframe class="reel-embed" src="about:blank" title="Reel 3" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
-            <div class="reel-placeholder">
-              <div class="reel-placeholder-inner">
-                <div class="reel-icon"><i class="fas fa-play"></i></div>
-                <strong>Reel 3</strong>
-                <p>This slot matches the same reel size so future embeds stay aligned and smooth across the row.</p>
-              </div>
-            </div>
+            <iframe
+              class="reel-embed"
+              src="https://www.youtube.com/embed/A6-VOEU19nY"
+              title="Luxreal the imaginary brand for shopify store"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
           </div>
         </article>
 
         <article class="reel-card reel-embed-card tilt-card fade-up">
           <div class="reel-embed-shell">
-            <iframe class="reel-embed" src="about:blank" title="Reel 4" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
-            <div class="reel-placeholder">
-              <div class="reel-placeholder-inner">
-                <div class="reel-icon"><i class="fas fa-play"></i></div>
-                <strong>Reel 4</strong>
-                <p>Paste your last reel embed link here later to complete the four-video showcase in the same section.</p>
-              </div>
-            </div>
+            <iframe
+              class="reel-embed"
+              src="https://drive.google.com/file/d/1PDtrskJtyJ91XURokwmium6qwZI8nZ7y/preview"
+              title="Google Drive reel preview"
+              loading="lazy"
+              allow="autoplay"
+              allowfullscreen>
+            </iframe>
           </div>
         </article>
       </div>
@@ -1801,6 +1864,38 @@ if (!prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
   });
 }
 
+const cursorDot = document.getElementById('cursorDot');
+const cursorRing = document.getElementById('cursorRing');
+
+if (cursorDot && cursorRing && window.matchMedia('(hover: hover)').matches) {
+  let mouseX = 0;
+  let mouseY = 0;
+  let ringX = 0;
+  let ringY = 0;
+
+  window.addEventListener('mousemove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    cursorDot.style.opacity = '1';
+    cursorRing.style.opacity = '1';
+    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+  }, { passive: true });
+
+  function animateCursor() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
+
+  document.querySelectorAll('a, button, iframe, .carousel-item, .tilt-card').forEach((element) => {
+    element.addEventListener('mouseenter', () => cursorRing.classList.add('cursor-hover'));
+    element.addEventListener('mouseleave', () => cursorRing.classList.remove('cursor-hover'));
+  });
+}
+
 const images = [
   { src: "ARATA 1-1.webp", label: "Arata Project" },
   { src: "a_A_beautiful_young_In.webp", label: "Indian Woman Portrait" },
@@ -1881,154 +1976,4 @@ function positionItems(index) {
     const absAngle = Math.abs(((angle % 360) + 360) % 360);
     const normAngle = absAngle > 180 ? 360 - absAngle : absAngle;
     const scale = 1 - (normAngle / 180) * 0.38;
-    const opacity = 0.28 + (1 - normAngle / 180) * 0.72;
-    const isActive = i === index;
-
-    item.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${-angle}deg) scale(${scale})`;
-    item.style.opacity = opacity;
-    item.style.zIndex = Math.round((1 - normAngle / 180) * 100);
-    item.classList.toggle('active', isActive);
-  });
-
-  allDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-}
-
-function goTo(index, skipAnim = false) {
-  if (isAnimating && !skipAnim) return;
-  isAnimating = true;
-  currentIndex = ((index % itemCount) + itemCount) % itemCount;
-  positionItems(currentIndex);
-  window.setTimeout(() => {
-    isAnimating = false;
-  }, prefersReducedMotion ? 0 : 950);
-}
-
-function startAutoRotate() {
-  if (prefersReducedMotion) return;
-  clearInterval(autoRotate);
-  autoRotate = window.setInterval(() => goTo(currentIndex + 1), 3200);
-}
-
-function resetAutoRotate() {
-  startAutoRotate();
-}
-
-function pauseAuto() {
-  clearInterval(autoRotate);
-}
-
-function openLightbox(index) {
-  lightboxIndex = index;
-  lightboxImg.src = images[index].src;
-  lightboxImg.alt = images[index].label;
-  lightboxCaption.textContent = images[index].label;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  pauseAuto();
-}
-
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-  window.setTimeout(() => {
-    lightboxImg.src = '';
-  }, 400);
-  startAutoRotate();
-}
-
-function lightboxNav(direction) {
-  lightboxIndex = (lightboxIndex + direction + itemCount) % itemCount;
-  lightboxImg.style.opacity = '0';
-  window.setTimeout(() => {
-    lightboxImg.src = images[lightboxIndex].src;
-    lightboxImg.alt = images[lightboxIndex].label;
-    lightboxCaption.textContent = images[lightboxIndex].label;
-    lightboxImg.style.transition = 'opacity 0.3s ease';
-    lightboxImg.style.opacity = '1';
-  }, 200);
-}
-
-document.getElementById('prevBtn').addEventListener('click', () => {
-  resetAutoRotate();
-  goTo(currentIndex - 1);
-});
-
-document.getElementById('nextBtn').addEventListener('click', () => {
-  resetAutoRotate();
-  goTo(currentIndex + 1);
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowLeft') {
-    resetAutoRotate();
-    goTo(currentIndex - 1);
-  }
-
-  if (event.key === 'ArrowRight') {
-    resetAutoRotate();
-    goTo(currentIndex + 1);
-  }
-
-  if (event.key === 'Escape' && lightbox.classList.contains('open')) {
-    closeLightbox();
-  }
-});
-
-stage.addEventListener('wheel', (event) => {
-  event.preventDefault();
-  wheelAccum += event.deltaY;
-  if (Math.abs(wheelAccum) > 80) {
-    resetAutoRotate();
-    goTo(currentIndex + (wheelAccum > 0 ? 1 : -1));
-    wheelAccum = 0;
-  }
-}, { passive: false });
-
-let touchStartX = 0;
-let touchStartY = 0;
-
-stage.addEventListener('touchstart', (event) => {
-  touchStartX = event.touches[0].clientX;
-  touchStartY = event.touches[0].clientY;
-}, { passive: true });
-
-stage.addEventListener('touchend', (event) => {
-  const dx = event.changedTouches[0].clientX - touchStartX;
-  const dy = event.changedTouches[0].clientY - touchStartY;
-  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-    resetAutoRotate();
-    goTo(currentIndex + (dx < 0 ? 1 : -1));
-  }
-}, { passive: true });
-
-stage.addEventListener('mouseenter', pauseAuto);
-stage.addEventListener('mouseleave', startAutoRotate);
-
-document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-document.getElementById('lightboxPrev').addEventListener('click', () => lightboxNav(-1));
-document.getElementById('lightboxNext').addEventListener('click', () => lightboxNav(1));
-
-lightbox.addEventListener('click', (event) => {
-  if (event.target === lightbox) {
-    closeLightbox();
-  }
-});
-
-window.addEventListener('resize', () => positionItems(currentIndex), { passive: true });
-
-document.querySelectorAll('.reel-embed-card').forEach((card) => {
-  const frame = card.querySelector('.reel-embed');
-  const placeholder = card.querySelector('.reel-placeholder');
-  const src = frame?.getAttribute('src')?.trim();
-  const hasEmbed = src && src !== 'about:blank';
-
-  if (placeholder) {
-    placeholder.style.display = hasEmbed ? 'none' : 'grid';
-  }
-});
-
-positionItems(currentIndex);
-startAutoRotate();
-</script>
-</body>
-</html>
+    const opacity = 0.28 + (1 - normAngle / 180) *
